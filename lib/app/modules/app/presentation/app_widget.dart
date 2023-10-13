@@ -10,7 +10,7 @@ class AppWidget extends StatelessWidget {
     Modular.setInitialRoute(Routes.home);
 
     return MaterialApp.router(
-      title: 'Centauro',
+      title: 'BlackJack Game',
       theme: ThemeData(
         useMaterial3: true,
         colorScheme: const ColorScheme(

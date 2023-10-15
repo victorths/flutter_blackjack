@@ -1,8 +1,8 @@
 import 'commons/commons.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
-class AppWidget extends StatelessWidget {
-  const AppWidget({Key? key}) : super(key: key);
+class AppPage extends StatelessWidget {
+  const AppPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

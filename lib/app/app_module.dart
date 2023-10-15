@@ -6,7 +6,7 @@ import 'commons/data/infra/dio_datasource.dart';
 class AppModule extends Module {
   @override
   void exportedBinds(i) {
-    i.add<RemoteDatasource>(DioDatasource.new);
+    i.add<RemoteDatasource>(() => DioDatasource());
   }
 
   @override

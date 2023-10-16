@@ -14,15 +14,24 @@ class HomeController extends PageLifeCycleController<HomeStore> {
   @override
   final HomeStore store;
 
+  @override
+  void onReady() {
+    store.completed();
+    super.onReady();
+  }
+
   Future<void> startGame() async {
     try {
+      store.revealCards = false;
+      store.loading();
       await _createNewDeck();
       store.player.cards.clear();
-      store.baordPlayer.cards.clear();
+      store.boardPlayer.cards.clear();
       await Future.wait([
         _drawBoardCards(2),
         _drawPlayerCards(2),
       ]);
+      store.completed();
     } on Exception catch (e) {
       store.error = e;
     }
@@ -43,10 +52,34 @@ class HomeController extends PageLifeCycleController<HomeStore> {
 
   Future<void> _drawBoardCards(int count) async {
     if (store.deckId != null) {
-      store.baordPlayer.cards
-          .addAll(await repository.drawCards(store.deckId!, 2));
+      store.boardPlayer.cards
+          .addAll(await repository.drawCards(store.deckId!, count));
     } else {
       throw Exception('The deck must be initialized');
     }
+  }
+
+  void drawCard() async {
+    try {
+      store.loading();
+      await Future.wait([
+        _drawPlayerCards(1),
+        _drawBoardCards(1),
+      ]);
+      store.completed();
+      _checkOver21();
+    } on Exception catch (e) {
+      store.error = e;
+    }
+  }
+
+  void _checkOver21() {
+    if (store.player.points > 21) {
+      stop();
+    }
+  }
+
+  void stop() {
+    store.revealCards = true;
   }
 }

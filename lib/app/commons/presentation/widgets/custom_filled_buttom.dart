@@ -9,7 +9,7 @@ class CustomFilledButtom extends StatelessWidget {
   const CustomFilledButtom({
     super.key,
     required this.text,
-    required this.onPressed,
+    this.onPressed,
     this.expanded = true,
     this.size = CustomFilledButtomSize.small,
   });
@@ -17,18 +17,23 @@ class CustomFilledButtom extends StatelessWidget {
   final CustomFilledButtomSize size;
   final bool expanded;
   final String text;
-  final VoidCallback onPressed;
+  final VoidCallback? onPressed;
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       width: expanded ? double.infinity : null,
-      height: _getHeight,
       child: FilledButton(
         style: FilledButton.styleFrom(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(4),
+          padding: const EdgeInsets.all(20),
+          side: const BorderSide(
+            color: Colors.white,
+            width: 2,
           ),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10),
+          ),
+          backgroundColor: Colors.black,
         ),
         onPressed: onPressed,
         child: Text(
@@ -42,21 +47,15 @@ class CustomFilledButtom extends StatelessWidget {
   TextStyle? get _getTextStyle {
     switch (size) {
       case CustomFilledButtomSize.small:
-        return null;
+        return const TextStyle(
+          fontSize: 14,
+          fontWeight: FontWeight.w600,
+        );
       case CustomFilledButtomSize.large:
         return const TextStyle(
           fontSize: 16,
           fontWeight: FontWeight.w700,
         );
-    }
-  }
-
-  double get _getHeight {
-    switch (size) {
-      case CustomFilledButtomSize.small:
-        return 32.0;
-      case CustomFilledButtomSize.large:
-        return 48.0;
     }
   }
 }

@@ -1,5 +1,6 @@
-import 'commons/commons.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+
+import 'commons/commons.dart';
 
 class AppPage extends StatelessWidget {
   const AppPage({Key? key}) : super(key: key);

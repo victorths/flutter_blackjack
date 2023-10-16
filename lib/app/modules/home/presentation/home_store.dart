@@ -6,5 +6,7 @@ class HomeStore extends StateStore {
 
   final PlayerFormEntity player = PlayerFormEntity();
 
-  String? deckId;
+  final _deckId = Rxn<String>();
+  String? get deckId => _deckId.value;
+  set deckId(String? value) => _deckId.value = value;
 }

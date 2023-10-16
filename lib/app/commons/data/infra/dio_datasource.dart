@@ -2,11 +2,6 @@ import 'dart:convert';
 
 import '../../commons.dart';
 
-const defaultHeaders = {
-  'contentType': 'application/json',
-  'accept': 'application/json',
-};
-
 class DioDatasource implements RemoteDatasource {
   final Dio _dio = Dio();
   final List<Interceptor> _interceptor;
@@ -20,7 +15,7 @@ class DioDatasource implements RemoteDatasource {
   Future delete({
     required String url,
     Map<String, dynamic> query = const {},
-    Map<String, String> headers = defaultHeaders,
+    Map<String, String> headers = const {},
   }) async {
     try {
       final response = await _dio.delete(
@@ -38,7 +33,7 @@ class DioDatasource implements RemoteDatasource {
   Future get({
     required String url,
     Map<String, dynamic> query = const {},
-    Map<String, String> headers = defaultHeaders,
+    Map<String, String> headers = const {},
   }) async {
     try {
       final response = await _dio.get(
@@ -57,7 +52,7 @@ class DioDatasource implements RemoteDatasource {
     required String url,
     Map body = const {},
     Map<String, dynamic> query = const {},
-    Map<String, String> headers = defaultHeaders,
+    Map<String, String> headers = const {},
   }) async {
     try {
       final response = await _dio.patch(
@@ -77,7 +72,7 @@ class DioDatasource implements RemoteDatasource {
     required String url,
     Map body = const {},
     Map<String, dynamic> query = const {},
-    Map<String, String> headers = defaultHeaders,
+    Map<String, String> headers = const {},
   }) async {
     try {
       final response = await _dio.post(
@@ -97,7 +92,7 @@ class DioDatasource implements RemoteDatasource {
     required String url,
     required Map body,
     Map<String, dynamic> query = const {},
-    Map<String, String> headers = defaultHeaders,
+    Map<String, String> headers = const {},
   }) async {
     try {
       final response = await _dio.put(

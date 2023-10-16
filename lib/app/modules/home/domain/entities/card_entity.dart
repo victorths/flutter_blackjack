@@ -20,4 +20,12 @@ class CardEntity extends Equatable {
     final value = int.parse(this.value);
     return (value, value);
   }
+
+  (int, int) get getCardValue {
+    return switch (value) {
+      'ACE' => (1, 11),
+      'JACK' || 'QUEEN' || 'KING' => (10, 10),
+      _ => valueToRecord,
+    };
+  }
 }

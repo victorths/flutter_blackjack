@@ -22,6 +22,8 @@ dependencies:
   cached_network_image: ^3.3.0
   equatable: ^2.0.5
   mocktail: ^1.0.1
+  fluttericon: ^2.0.0
+  collection: ^1.17.2
 
 dev_dependencies:
   flutter_test:

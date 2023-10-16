@@ -10,13 +10,14 @@ class BlackjackDatasource {
 
   Future<String> newDeck() async {
     try {
-      final response =
-          await remoteDatasource.get(url: '/deck/new/shuffle/?deck_count=1');
-      if (response.data['success']) {
-        return response.data['deck_id'];
+      final response = await remoteDatasource.get(
+        url: '/deck/new/shuffle/?deck_count=1',
+      );
+      if (response['success']) {
+        return response['deck_id'];
       } else {
         throw Exception(
-            'Error on create a new deck from remote datasouce: ${response.data['error']}');
+            'Error on create a new deck from remote datasouce: ${response['error']}');
       }
     } catch (e) {
       throw Exception(
@@ -28,11 +29,11 @@ class BlackjackDatasource {
     try {
       final response =
           await remoteDatasource.get(url: '/deck/$deckId/shuffle/');
-      if (response.data['success']) {
+      if (response['success']) {
         return true;
       } else {
         throw Exception(
-            'Error on shuffle deck from remote datasouce: ${response.data['error']}');
+            'Error on shuffle deck from remote datasouce: ${response['error']}');
       }
     } catch (e) {
       throw Exception(
@@ -44,8 +45,8 @@ class BlackjackDatasource {
     try {
       final response =
           await remoteDatasource.get(url: '/deck/$deckId/draw/?count=$count');
-      if (response.data['cards'] != null) {
-        return response.data['cards']
+      if (response['cards'] != null) {
+        return response['cards']
             .cast<Map<String, dynamic>>()
             .map<CardModel>((json) => CardModel.fromJson(json))
             .toList();

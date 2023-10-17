@@ -9,7 +9,7 @@ class HomeController extends PageLifeCycleController<HomeStore> {
     required this.repository,
   });
 
-  BlackjackRepository repository;
+  final BlackjackRepository repository;
 
   @override
   final HomeStore store;

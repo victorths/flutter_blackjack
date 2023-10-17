@@ -8,7 +8,7 @@ class HomeStore extends StateStore {
 
   bool get didPlayerLose =>
       (revealCards &&
-          (player.points < boardPlayer.points.$1 &&
+          (player.points < boardPlayer.points.$1 ||
               player.points < boardPlayer.points.$2) &&
           boardPlayer.points < 22) ||
       player.points > 21;
